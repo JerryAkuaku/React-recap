@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState, createContext } from "react";
 //import Login from "./pages/Login";
 //import Demo from "./pages/Demo";
-import Notecard from "./components/Notecard";
+//import Notecard from "./components/Notecard";
 import TaskPage from "./pages/TaskPage";
+const UserContext = createContext();
 
 export default function App() {
   return (

@@ -1,6 +1,10 @@
+import { useContext, createContext } from "react";
+
 import Notecard from "../components/Notecard";
 import { useState } from "react";
 import { useEffect } from "react";
+
+const UserContext = createContext();
 
 const TaskPage = () => {
   const [inputValue, setInputValue] = useState("");
@@ -59,54 +63,56 @@ const TaskPage = () => {
     return <button>Save</button>;
   }
   return (
-    <div>
+    <UserContext.Provider value={tasks}>
       <div>
-        <h1>Your Tasks</h1>
-
-        {/* Input Section */}
-        <input
-          className="text-black"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="type ..."
-        />
-        <button onClick={onAdd}>Add</button>
-        <button onClick={clearCompleted}>Clear Completed</button>
-
-        {/* Empty State */}
-        {tasks.length === 0 && <p>No tasks yet!</p>}
-        {/* Tasks List */}
         <div>
-          {tasks.map((task) => (
-            <Notecard
-              key={task.id}
-              task={task}
-              deleteTask={onDelete}
-              onDone={handleDone}
-              editTask={editTask}
-            />
-          ))}
+          <h1>Your Tasks</h1>
+
+          {/* Input Section */}
+          <input
+            className="text-black"
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder="type ..."
+          />
+          <button onClick={onAdd}>Add</button>
+          <button onClick={clearCompleted}>Clear Completed</button>
+
+          {/* Empty State */}
+          {tasks.length === 0 && <p>No tasks yet!</p>}
+          {/* Tasks List */}
+          <div>
+            {tasks.map((task) => (
+              <Notecard
+                key={task.id}
+                task={task}
+                deleteTask={onDelete}
+                onDone={handleDone}
+                editTask={editTask}
+              />
+            ))}
+          </div>
+        </div>
+        <div>
+          <input
+            className="text-black"
+            value={nameValue}
+            onChange={(e) => setNameValue(e.target.value)}
+          />
+          <button onClick={onAddName}>Add Name</button>
+
+          <div>
+            {name.map((names) => {
+              return <div>{names.text} </div>;
+            })}
+          </div>
+          <div>
+            {completedTasks.length > 0 ? completedTasks.length : 0} done out of{" "}
+            {tasks.length}
+          </div>
         </div>
       </div>
-      <div>
-        <input
-          className="text-black"
-          value={nameValue}
-          onChange={(e) => setNameValue(e.target.value)}
-        />
-        <button onClick={onAddName}>Add Name</button>
-
-        <div>
-          {name.map((names) => {
-            return <div>{names.text} </div>;
-          })}
-        </div>
-        <div>
-          {completedTasks.length > 0 ? completedTasks.length : 0} done out of{" "}
-          {tasks.length}
-        </div>
-      </div>
-    </div>
+    </UserContext.Provider>
   );
 };
 

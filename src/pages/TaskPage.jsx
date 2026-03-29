@@ -85,7 +85,6 @@ const TaskPage = () => {
             {tasks.map((task) => (
               <Notecard
                 key={task.id}
-                task={task}
                 deleteTask={onDelete}
                 onDone={handleDone}
                 editTask={editTask}

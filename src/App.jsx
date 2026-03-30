@@ -1,14 +1,17 @@
-import React, { useContext, useState, createContext } from "react";
-//import Login from "./pages/Login";
-//import Demo from "./pages/Demo";
 //import Notecard from "./components/Notecard";
 import TaskPage from "./pages/TaskPage";
-const UserContext = createContext();
+import ThemeProvider from "./context/ThemeContext";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-chatgptDark text-gray-100 p-6">
-      <TaskPage />
-    </div>
+    <ThemeProvider>
+      <div className="min-h-screen flex items-center justify-center bg-chatgptDark text-gray-100 p-6">
+        <Header />
+        <TaskPage />
+        <Footer />
+      </div>
+    </ThemeProvider>
   );
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 import Rotate from "../components/motionExample";
 
 export default function Demo() {

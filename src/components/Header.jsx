@@ -13,7 +13,9 @@ function Header() {
       }}
     >
       <h1>My App</h1>
-      <button onClick={toggleTheme}>Change Theme</button>
+      <button onClick={toggleTheme}>
+        {theme === "light" ? "🌙 Dark" : "☀️ Light"}
+      </button>
     </header>
   );
 }

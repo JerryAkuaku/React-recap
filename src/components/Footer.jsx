@@ -1,8 +1,10 @@
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { countNoticeboard } from "../context/counterContex";
 
 function Footer() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const { count, increase, decrease } = useContext(countNoticeboard);
   return (
     <footer
       style={{
@@ -13,6 +15,23 @@ function Footer() {
       }}
     >
       <p>© 2024 My App - {theme} mode</p>
+      <div>{count}</div>
+      <button
+        onClick={() => {
+          increase();
+        }}
+      >
+        {" "}
+        Increase
+      </button>{" "}
+      <button
+        onClick={() => {
+          decrease();
+        }}
+      >
+        {" "}
+        Decrease
+      </button>
     </footer>
   );
 }

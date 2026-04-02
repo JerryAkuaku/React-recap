@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { countNoticeboard } from "../context/counterContex";
-
+import { useCounter } from "../context/counterContex";
+import { Link } from "react-router-dom";
 function Header() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { count, increase, decrease } = useContext(countNoticeboard);
+  const { count, increase, decrease } = useCounter();
 
   return (
     <header
@@ -35,6 +35,10 @@ function Header() {
         {" "}
         Decrease
       </button>
+      <nav>
+        <Link to="/Taskpage">Home</Link>
+        <Link to="/Login">Login</Link>
+      </nav>
     </header>
   );
 }

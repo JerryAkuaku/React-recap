@@ -1,4 +1,4 @@
-import { useState, createContext, Children } from "react";
+import { useState, createContext, useContext } from "react";
 
 const countNoticeboard = createContext();
 
@@ -22,5 +22,10 @@ function CounterProvider({ children }) {
   );
 }
 
+function useCounter() {
+  const context = useContext(countNoticeboard);
+  return context;
+}
+
 export { CounterProvider };
-export { countNoticeboard };
+export { useCounter };

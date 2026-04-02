@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
-import { countNoticeboard } from "../context/counterContex";
+import { useCounter } from "../context/counterContex";
 
 function Footer() {
   const { theme, toggleTheme } = useContext(ThemeContext);
-  const { count, increase, decrease } = useContext(countNoticeboard);
+  const { count, increase, decrease } = useCounter();
   return (
     <footer
       style={{

@@ -187,3 +187,99 @@ console.log(
     { name: "Socks", price: 5, quantity: 3 },
   ]),
 );
+
+function arr(a, k) {
+  let maxSum = 0;
+  let sum = 0;
+
+  for (let i = 0; i < k; i++) {
+    sum += a[i];
+  }
+  maxSum = sum;
+  for (let i = k; i < a.length; i++) {
+    sum += a[i] - a[i - k];
+    sum > maxSum ? (maxSum = sum) : null;
+  }
+  return maxSum;
+}
+
+console.log(arr([3, 6, 4, 8, 6, 7], 3));
+
+function smallestArray(a, k) {
+  let sum = 0;
+  let left = 0;
+  let minLength = Infinity;
+  for (let right = 0; right < a.length; right++) {
+    sum += a[right];
+
+    while (sum >= k) {
+      let length = right - left + 1;
+
+      minLength > length ? (minLength = length) : null;
+
+      sum -= a[left];
+      left++;
+    }
+  }
+
+  return minLength === Infinity ? 0 : minLength;
+}
+
+console.log(smallestArray([6, 5, 6, 2, 7, 4, 2], 18));
+
+function largestArray(a, k) {
+  let sum = 0;
+  let maxLength = 0;
+  let left = 0;
+
+  for (let right = 0; right < a.length; right++) {
+    sum += a[right];
+    while (sum > k) {
+      let length = right - left + 1;
+      maxLength < length ? (maxLength = length) : null;
+      sum -= a[left];
+      left++;
+    }
+  }
+  return maxLength;
+}
+console.log(largestArray([6, 5, 3, 2, 4, 2], 11));
+
+function longestString(str) {
+  let sum = [];
+  let maxLength = 0;
+  let left = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    if (!sum.includes(str[right])) {
+      sum.push(str[right]);
+    } else {
+      {
+        let length = right - left + 1;
+        maxLength < length ? (maxLength = length) : null;
+        sum.splice(left, 1);
+        left++;
+      }
+    }
+  }
+  return maxLength - 1;
+}
+console.log(longestString("abbasdew "));
+
+
+function rectangle(n) {
+  for (let i = 1; i <= n; i++) {
+    for (let j = 1; j <= n; j++) {
+      if (i != 1 || i != n &&j != 1 || j != n) {
+        
+          console.log("0");
+        } else {
+          console.log("1");
+        }
+      
+      }
+    }
+  }
+}
+
+rectangle(3);
